@@ -73,7 +73,9 @@
               </li>
               <li>
                 <a
-                  ><button class="btn btn-soft text-[#422AD5] border-[#422AD5]">
+                  ><button
+                    class="btn btn-soft text-[#422AD5] border-[#422AD5] hover:"
+                  >
                     <i class="fa-solid fa-right-from-bracket"></i>Logout
                   </button>
                 </a>
@@ -157,17 +159,30 @@
       </section>
 
       <!-- Lession section -->
-      <section class="lession-section w-11/12 mb-4">
+      <section class="lession-section w-11/12 mb-4 mx-auto">
         <h2 class="text-4xl font-semibold text-center">
           <span class="text-blue-400 font-bold">Frequently </span> Ask Question
         </h2>
 
-        <div id="lession-btn-container" class="flex gap-4 justify-center  mt-4">
-         
-          
-        </div>
+        <div
+          id="lession-btn-container"
+          class="flex gap-4 justify-center mt-4 flex-wrap items-center"
+        ></div>
       </section>
+      <!-- Word container area -->
+
+      <section
+        id="word-container"
+        class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 gap-3 shadow mt-10"
+      >
+      <div class="default-text  col-span-full text-center p-10 space-y-9 bg-[#79716B10]">
+        <p class="text-2xl font-semibold hind ">আপনি এখনো কোন Lesson Select করেন নি</p>
+        <h2 class="text-6xl font-bold hind">একটি Lesson Select করুন।</h2>
+      </div>
+    
+    </section>
     </main>
+    <!-- <script src="./script/demo.js"></script> -->
     <script src="./script/script.js"></script>
   </body>
 </html>
