@@ -3,9 +3,21 @@ let url = "https://openapi.programming-hero.com/api/levels/all";
 fetch(url)
   .then((res) => res.json())
   .then((book) => showData(book.data));
+  // remove active class from all button
+  let removeActive=()=>{
+    let activebuttonClear=document.querySelectorAll('.common-btn');
+    activebuttonClear.forEach((colorBtn)=>{
+      colorBtn.classList.remove('active');
+    })
+    
+  } 
 
 const loadLiveWord = (id) => {
   let url = `https://openapi.programming-hero.com/api/level/${id}`;
+  let activeButton=document.getElementById(`activeBtn-${id}`);
+  removeActive()
+  activeButton.classList.add('active');
+  
   // console.log(url);
   fetch(url)
     .then((respon) => respon.json())
@@ -30,14 +42,14 @@ const showWord = (words) => {
   words.forEach((word) => {
     let wordElement = document.createElement("div");
 
-    console.log(word);
+    // console.log(word);
     
     wordElement.innerHTML = `
-     <div class="card shadow p-4">
-          <div class="card-body items-center text-center space-y-4">
+     <div class="card shadow p-4 h-full">
+          <div class="card-body items-center text-center space-y-4 ">
             <h2 class="card-title text-2xl">${word.word}!</h2>
            
-            <p class="text-[#18181B] text-2xl ">Meaning: ${word.meaning ? word.meaning : '<span class="text-[red]"> "অর্থ পাওয়া যায়নি"</span>'} </p>
+            <p class="text-[#18181B] text-2xl ">Meaning: ${word.meaning ? word.meaning : '<span class="text-[red] "> "অর্থ পাওয়া যায়নি"</span>'} </p>
             <p class="text-[#18181B] text-2xl">Pronouciation: ${word.pronunciation ? word.pronunciation : '<span class="text-[red]"> "উচ্চারন পাওয়া যায়নি"</span>'} </p>
             <div class="card-actions flex justify-between w-full">
               <div><i class="fa-solid fa-circle-question"></i></div>
@@ -57,7 +69,7 @@ const showData = (lessions) => {
     let area = document.createElement("div");
     area.innerHTML = `
     
-     <button onclick='loadLiveWord(${lession.level_no})' class="btn btn-soft text-[#422AD5] border-[#422AD5] ">
+     <button id="activeBtn-${lession.level_no}" onclick='loadLiveWord(${lession.level_no})' class="btn btn-soft text-[#422AD5] border-[#422AD5] common-btn">
             <i class="fa-solid fa-book-open"></i>Lession-${lession.level_no}
           </button>
 
@@ -65,3 +77,4 @@ const showData = (lessions) => {
     container.appendChild(area);
   });
 };
+
