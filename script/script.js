@@ -85,27 +85,46 @@ let wordDetails = (id) => {
     .then((res) => res.json())
     .then((data) => showWordDetails(data.data));
 };
-let showWordDetails=(data)=>{
-  console.log(data);
-  
+// Synonames function
 
-  my_modal_5.showModal()
+let syno = (fruits) => {
+  let newList = fruits.map((fruit) => `<span> ${fruit}</span>`);
+  // return(newList.join(''));
+  // console.log(newList);
+  return newList.join(" ");
 
-  let wordArea=document.getElementById('my_modal_5');
-  wordArea.innerHTML=`
+  // return newList;
+};
 
-  <div  class="p-10 space-y-5 bg-white rounded-md">
-<div class="inner border-2 border-gray-50 space-y-2 p-4 rounded-md">
-  <h2 class="text-2xl font-bold">${data.word} <span>(<i class="fa-solid fa-microphone-lines"></i>${data.pronunciation})</span></h2>
+let showWordDetails = (data) => {
+  // console.log(data);
+
+  // <h3 class="bg-blue-100 py-2 px-6 rounded-md">synonamesFunction(data.synonyms)</h3>
+  my_modal_5.showModal();
+
+  let wordArea = document.getElementById("my_modal_5");
+  wordArea.innerHTML = `
+
+  <div  class="p-2 space-y-5 bg-white rounded-md">
+<div class="inner  space-y-2 p-4 rounded-md">
+  <h2 class="text-2xl font-bold">${
+    data.word
+  } <span>(<i class="fa-solid fa-microphone-lines"></i>${
+    data.pronunciation
+  })</span></h2>
 <p class="font-bold">Meaning</p>
-<p class="font-semibold">${data.meaning ? data.meaning : `<span class="text-red-600">খুজে পাওয়া যায় নি</span>`}</p>
+<p class="font-semibold">${
+    data.meaning
+      ? data.meaning
+      : `<span class="text-red-600">খুজে পাওয়া যায় নি</span>`
+  }</p>
 <p class="font-bold">example</p>
-<p class="text-white">${data.sentence}</p>
+<p class="text-black">${data.sentence}</p>
 <p class="font-bold">সমার্থক শব্দগুলো</p>
 <div class="similarContainer flex gap-4 ">
-  <h3 class="bg-blue-100 py-2 px-6 rounded-md">${data.synonyms[0]}</h3>
-  <h3 class="bg-blue-100 py-2 px-6 rounded-md">${data.synonyms[1]}</h3>
-  <h3 class="bg-blue-100 py-2 px-6 rounded-md">${data.synonyms[2]}</h3>
+  
+  <div class="bg-blue-100 py-2 px-2 rounded-md mr-2">${syno(data.synonyms)}</div>
+
 </div>
 </div>
 <button class="bg-[#422AD5] py-3 px-8 rounded-md text-white">Complete Learning</button>
@@ -117,10 +136,9 @@ let showWordDetails=(data)=>{
     </div>
 </div>
   
-  `
-  document.getElementById('my_modal_5').showModal()
-
-}
+  `;
+  document.getElementById("my_modal_5").showModal();
+};
 
 const showData = (lessions) => {
   lessions.forEach((lession) => {
